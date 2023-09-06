@@ -1,4 +1,5 @@
 import { ENSArgs } from '..'
+import { TLD } from '../utils/consts'
 import { CommitmentParams, makeCommitment } from '../utils/registerHelpers'
 import { wrappedLabelLengthCheck } from '../utils/wrapper'
 
@@ -12,7 +13,7 @@ export default async function (
   { resolverAddress, ...params }: Params,
 ) {
   const labels = name.split('.')
-  if (labels.length !== 2 || labels[1] !== 'eth')
+  if (labels.length !== 2 || labels[1] !== TLD)
     throw new Error('Currently only .eth TLD registrations are supported')
 
   wrappedLabelLengthCheck(labels[0])

@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { toUtf8Bytes } from '@ethersproject/strings'
 import { ENSArgs } from '../index'
+import { TLD } from './consts'
 
 export type Expiry = string | number | Date | BigNumber
 
@@ -23,7 +24,7 @@ export const makeExpiry = async (
   expiry?: Expiry,
 ) => {
   if (expiry) return expiryToBigNumber(expiry)
-  if (name.endsWith('.eth')) {
+  if (name.endsWith(`.${TLD}`)) {
     const expResponse = await getExpiry(name)
     if (!expResponse?.expiry)
       throw new Error("Couldn't get expiry for name, please provide one.")

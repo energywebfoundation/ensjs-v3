@@ -1,11 +1,12 @@
 import { ENSArgs } from '..'
+import { TLD } from '../utils/consts'
 import { labelhash } from '../utils/labels'
 
 const raw = async ({ contracts }: ENSArgs<'contracts'>, name: string) => {
   const baseRegistrar = await contracts?.getBaseRegistrar()!
 
   const labels = name.split('.')
-  if (labels.length !== 2 || labels[1] !== 'eth') {
+  if (labels.length !== 2 || labels[1] !== TLD) {
     throw new Error('Currently only .eth names can be checked for availability')
   }
 

@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { keccak256 as solidityKeccak256 } from '@ethersproject/solidity'
 import { ENSArgs } from '..'
+import { TLD } from '../utils/consts'
 import { namehash } from '../utils/normalise'
 import { checkIsDotEth } from '../utils/validation'
 
@@ -14,7 +15,7 @@ const getRegistrarExpiry = async (
   { contracts, multicallWrapper }: ENSArgs<'contracts' | 'multicallWrapper'>,
   labels: string[],
 ) => {
-  if (labels.length > 2 || labels[1] !== 'eth') {
+  if (labels.length > 2 || labels[1] !== TLD) {
     throw new Error('Only .eth names have expiry dates on the registrar')
   }
 

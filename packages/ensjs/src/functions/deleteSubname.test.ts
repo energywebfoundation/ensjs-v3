@@ -1,6 +1,7 @@
 import { ethers } from 'ethers'
 import { ENS } from '..'
 import setup from '../tests/setup'
+import { TLD } from '../utils/consts'
 import { namehash } from '../utils/normalise'
 
 let ensInstance: ENS
@@ -183,7 +184,7 @@ describe('deleteSubname', () => {
 
   it('should not allow deleting 1LD', async () => {
     await expect(
-      ensInstance.deleteSubname('eth', {
+      ensInstance.deleteSubname(TLD, {
         contract: 'nameWrapper',
         method: 'setRecord',
         addressOrIndex: 1,

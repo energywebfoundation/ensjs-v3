@@ -1,6 +1,6 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { ENSArgs } from '..'
-import { MAX_INT_64 } from '../utils/consts'
+import { MAX_INT_64, TLD } from '../utils/consts'
 import { labelhash } from '../utils/labels'
 import { namehash } from '../utils/normalise'
 
@@ -39,7 +39,7 @@ export default async function (
   const names = Array.isArray(nameOrNames) ? nameOrNames : [nameOrNames]
   const labels = names.map((name) => {
     const label = name.split('.')
-    if (label.length !== 2 || label[1] !== 'eth') {
+    if (label.length !== 2 || label[1] !== TLD) {
       throw new Error('Currently only .eth TLD renewals are supported')
     }
     return label[0]

@@ -1,5 +1,6 @@
 import { keccak256 as solidityKeccak256 } from '@ethersproject/solidity'
 import { ENSArgs } from '..'
+import { TLD } from '../utils/consts'
 import { namehash } from '../utils/normalise'
 
 export default async function (
@@ -27,7 +28,7 @@ export default async function (
         signer,
       )
       const labels = name.split('.')
-      if (labels.length > 2 || labels[labels.length - 1] !== 'eth') {
+      if (labels.length > 2 || labels[labels.length - 1] !== TLD) {
         throw new Error('Invalid name for baseRegistrar')
       }
       const tokenId = solidityKeccak256(['string'], [labels[0]])

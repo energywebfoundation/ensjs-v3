@@ -1,5 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { ENSArgs } from '..'
+import { TLD } from '../utils/consts'
 import {
   BaseRegistrationParams,
   makeRegistrationData,
@@ -16,7 +17,7 @@ export default async function (
   { resolverAddress, value, ...params }: Params,
 ) {
   const labels = name.split('.')
-  if (labels.length !== 2 || labels[1] !== 'eth')
+  if (labels.length !== 2 || labels[1] !== TLD)
     throw new Error('Currently only .eth TLD registrations are supported')
 
   wrappedLabelLengthCheck(labels[0])

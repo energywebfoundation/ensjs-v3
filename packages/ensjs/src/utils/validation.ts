@@ -1,4 +1,4 @@
-import { MINIMUM_DOT_ETH_CHARS } from './consts'
+import { MINIMUM_DOT_ETH_CHARS, TLD } from './consts'
 import { checkLabel, isEncodedLabelhash, saveName } from './labels'
 import { Label, normalise, split } from './normalise'
 
@@ -42,7 +42,7 @@ export const parseInput = (input: string): ParsedInputResult => {
 
   const labels = nameReference.split('.')
   const tld = labels[labels.length - 1]
-  const isETH = tld === 'eth'
+  const isETH = tld === TLD
   const labelDataArray = split(nameReference)
   const isShort =
     (labelDataArray[0].output?.length || 0) < MINIMUM_DOT_ETH_CHARS
@@ -72,4 +72,4 @@ export const parseInput = (input: string): ParsedInputResult => {
 }
 
 export const checkIsDotEth = (labels: string[]) =>
-  labels.length === 2 && labels[1] === 'eth'
+  labels.length === 2 && labels[1] === TLD

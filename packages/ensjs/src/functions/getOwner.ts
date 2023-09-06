@@ -11,6 +11,7 @@ import {
   getClientErrors,
   ENSJSError,
 } from '../utils/errors'
+import { TLD } from '../utils/consts'
 
 export type Owner = {
   registrant?: string
@@ -138,7 +139,7 @@ const decode = async (
   const { contract, skipGraph = true } = options
 
   const labels = name.split('.')
-  const isEth = labels[labels.length - 1] === 'eth'
+  const isEth = labels[labels.length - 1] === TLD
   const is2LD = labels.length === 2
 
   if (contract || labels.length === 1) {
